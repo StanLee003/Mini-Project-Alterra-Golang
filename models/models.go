@@ -6,17 +6,17 @@ import (
 
 type User struct {
     gorm.Model
-    Username string `gorm:"unique;not null"`
+    Username string 
     Password string
-    Role     string
+    Role     int
 }
 
 type Bicycle struct {
     gorm.Model
     Name        string
     Type        string
-    Seat        int
-    PricePerHour float64
+    Seat        string
+    PricePerHour int
 }
 
 type Rental struct {
