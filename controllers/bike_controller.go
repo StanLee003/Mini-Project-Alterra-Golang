@@ -55,22 +55,18 @@ func (bc *BicycleController) CreateBicycle(c echo.Context) error {
 }
 
 func (bc *BicycleController) UpdateBicycle(c echo.Context) error {
-    // Get the bicycle ID from the URL parameter
     bicycleID := c.Param("id")
 
-    // Find the bicycle by ID
     var bicycle models.Bicycle
     if err := bc.DB.First(&bicycle, bicycleID).Error; err != nil {
         return c.JSON(http.StatusNotFound, map[string]string{"error": "Bicycle not found"})
     }
 
-    // Parse the updated bicycle data from the form data
     name := c.FormValue("name")
     bikeType := c.FormValue("type")
     seat := c.FormValue("seat")
     pricePerHourStr := c.FormValue("price_per_hour")
 
-    // Update the bicycle's information
     if name != "" {
         bicycle.Name = name
     }
@@ -88,13 +84,11 @@ func (bc *BicycleController) UpdateBicycle(c echo.Context) error {
         bicycle.PricePerHour = pricePerHour
     }
 
-    // Save the updated bicycle to the database
     if err := bc.DB.Save(&bicycle).Error; err != nil {
-        log.Println("Error:", err) // Log the actual error
+        log.Println("Error:", err)
         return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to update bicycle"})
     }
 
-    // Return a success response
     return c.JSON(http.StatusOK, bicycle)
 }
 
