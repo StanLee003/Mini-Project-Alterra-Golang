@@ -12,6 +12,7 @@ func SetupRoutes(e *echo.Echo, db *gorm.DB) {
     
     //users
     e.POST("/users/register", userController.CreateUser)
+    e.POST("/users/login", userController.Login)
     e.GET("/users", userController.GetUsers)
     e.GET("/users/:id", userController.GetUserByID)
     e.PUT("/users/:id", userController.UpdateUser)

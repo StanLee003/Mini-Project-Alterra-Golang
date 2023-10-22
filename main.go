@@ -37,7 +37,6 @@ func main() {
 	sqlDB, _ := db.DB()
 	defer sqlDB.Close() // Close the underlying database connection
 
-	// Auto-migrate your models
 	db.AutoMigrate(&models.User{}, &models.Bicycle{}, &models.Rental{}, &models.UserDetail{})
 
 	e := echo.New()
