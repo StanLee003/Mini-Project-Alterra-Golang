@@ -13,11 +13,13 @@ func SetupRoutes(e *echo.Echo, db *gorm.DB) {
     //users
     e.POST("/users/register", userController.CreateUser)
     e.GET("/users", userController.GetUsers)
-    // e.PUT("/users/:id", controllers.UpdateUser)
-    // e.DELETE("/users/:id", controllers.DeleteUser)
+    e.GET("/users/:id", userController.GetUserByID)
+    e.PUT("/users/:id", userController.UpdateUser)
+    e.DELETE("/users/:id", userController.DeleteUser)
 
     //bicycle
     e.GET("/bicycles", bikeController.GetBicycles)
+    e.GET("/bicycles/:id", bikeController.GetBicycleByID)
     e.POST("/bicycles/register", bikeController.CreateBicycle)
     e.PUT("/bicycles/:id", bikeController.UpdateBicycle)
     e.DELETE("/bicycles/:id", bikeController.DeleteBicycle)

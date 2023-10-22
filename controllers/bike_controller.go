@@ -29,6 +29,19 @@ func (bc *BicycleController) GetBicycles(c echo.Context) error {
 	return c.JSON(http.StatusOK, bicycles)
 }
 
+func (bc *BicycleController) GetBicycleByID(c echo.Context) error {
+    // Get the bicycle ID from the URL parameter
+    bikeID := c.Param("id")
+
+    // Find the bicycle by ID
+    var bike models.Bicycle
+    if err := bc.DB.First(&bike, bikeID).Error; err != nil {
+        return c.JSON(http.StatusNotFound, map[string]string{"error": "Bike not found"})
+    }
+
+    return c.JSON(http.StatusOK, bike)
+}
+
 func (bc *BicycleController) CreateBicycle(c echo.Context) error {
     name := c.FormValue("name")
     bikeType := c.FormValue("type")

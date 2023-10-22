@@ -3,6 +3,7 @@ module bikrent
 go 1.21.0
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/joho/godotenv v1.5.1
 	github.com/labstack/echo v3.3.10+incompatible
 	golang.org/x/crypto v0.0.0-20191205180655-e7c4368fe9dd
