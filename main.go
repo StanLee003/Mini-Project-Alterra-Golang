@@ -35,7 +35,7 @@ func main() {
 		log.Fatalf("Failed to open a database connection: %v", err)
 	}
 	sqlDB, _ := db.DB()
-	defer sqlDB.Close() // Close the underlying database connection
+	defer sqlDB.Close()
 
 	db.AutoMigrate(&models.User{}, &models.Bicycle{}, &models.Rental{}, &models.UserDetail{})
 
