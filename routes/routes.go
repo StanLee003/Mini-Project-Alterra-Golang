@@ -9,6 +9,7 @@ import (
 func SetupRoutes(e *echo.Echo, db *gorm.DB) {
 	userController := controllers.NewUserController(db)
     bikeController := controllers.NewBicycleController(db)
+    userDetailController := controllers.NewUserDetailController(db)
     
     //users
     e.POST("/users/register", userController.CreateUser)
@@ -24,4 +25,10 @@ func SetupRoutes(e *echo.Echo, db *gorm.DB) {
     e.POST("/bicycles/register", bikeController.CreateBicycle)
     e.PUT("/bicycles/:id", bikeController.UpdateBicycle)
     e.DELETE("/bicycles/:id", bikeController.DeleteBicycle)
+
+    //userdetail
+    e.POST("/userdetail/:id", userDetailController.CreateUserDetail)
+    e.GET("/userdetail/:id", userDetailController.GetUserWithDetail)
+    e.PUT("userdetail/:id", userDetailController.UpdateUserDetail)
+    e.DELETE("userdetail/:id", userDetailController.DeleteUserDetail)
 }
