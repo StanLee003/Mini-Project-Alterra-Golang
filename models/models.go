@@ -9,6 +9,7 @@ type User struct {
     Username   string
     Password   string
     Role       int
+    Rental     []Rental
 }
 
 type UserWithDetail struct {
