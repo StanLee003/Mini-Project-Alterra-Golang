@@ -23,7 +23,7 @@ func NewUserDetailController(db *gorm.DB) *UserDetailController {
 func (udc *UserDetailController) CreateUserDetail(c echo.Context) error {
     userID := c.Param("id")
 
-    var user models.User
+    var user models.UserWithDetail
     if err := udc.DB.First(&user, userID).Error; err != nil {
         return c.JSON(http.StatusNotFound, map[string]string{"error": "User not found"})
     }
