@@ -9,8 +9,14 @@ type User struct {
     Username   string
     Password   string
     Role       int
+}
+
+type UserWithDetail struct {
+    gorm.Model
+    Username   string
+    Password   string
+    Role       int
     UserDetail UserDetail
-    Rentals    []Rental
 }
 
 type Bicycle struct {
@@ -19,7 +25,6 @@ type Bicycle struct {
     Type        string
     Seat        string
     PricePerHour int
-    Rentals     []Rental
 }
 
 type Rental struct {
