@@ -7,6 +7,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 	"gorm.io/gorm"
 	"gorm.io/driver/mysql"
 	"bikrent/routes"
@@ -41,6 +42,10 @@ func main() {
 
 	e := echo.New()
 	routes.SetupRoutes(e, db)
+
+	e.Use(middleware.Logger())
+    e.Use(middleware.Recover())
+    e.Use(middleware.CORS())
 
 	e.Start(":8080")
 }
