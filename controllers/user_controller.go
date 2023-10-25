@@ -64,6 +64,7 @@ func (uc *UserController) Login(c echo.Context) error {
     claims := token.Claims.(jwt.MapClaims)
     claims["username"] = user.Username
     claims["userID"] = user.ID
+    claims["role"] = user.Role
     tokenString, err := token.SignedString([]byte("your-secret-key")) 
 
     if err != nil {
