@@ -6,9 +6,18 @@ import (
 
 type User struct {
     gorm.Model
-    Username string 
-    Password string
-    Role     int
+    Username   string
+    Password   string
+    Role       int
+    Rentals     []Rental
+}
+
+type UserWithDetail struct {
+    gorm.Model
+    Username   string
+    Password   string
+    Role       int
+    UserDetail UserDetail
 }
 
 type Bicycle struct {
@@ -26,15 +35,16 @@ type Rental struct {
     RentalStartTime string
     RentalEndTime   string
     TotalPrice      float64
+    User            User
+    Bicycle         Bicycle
 }
 
 type UserDetail struct {
     gorm.Model
-    UserID          uint
-    Nama            string
-    Alamat          string
-    NoTelp          string
-    JenisKelamin    string
+    UserID             uint
+    Nama               string
+    Alamat             string
+    NoTelp             string
+    JenisKelamin       string
     TanggalTempatLahir string
 }
-

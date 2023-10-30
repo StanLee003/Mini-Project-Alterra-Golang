@@ -64,6 +64,7 @@ func (uc *UserController) Login(c echo.Context) error {
     claims := token.Claims.(jwt.MapClaims)
     claims["username"] = user.Username
     claims["userID"] = user.ID
+    claims["role"] = user.Role
     tokenString, err := token.SignedString([]byte("your-secret-key")) 
 
     if err != nil {
@@ -91,8 +92,17 @@ func (uc *UserController) GetUserByID(c echo.Context) error {
         return c.JSON(http.StatusNotFound, map[string]string{"error": "User not found"})
     }
 
+    // Fetch rental history for the user and include it in the response
+    var rentals []models.Rental
+    if err := uc.DB.Where("user_id = ?", user.ID).Find(&rentals).Error; err != nil {
+        log.Println("Error:", err)
+        return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to retrieve user rentals"})
+    }
+    user.Rentals = rentals
+
     return c.JSON(http.StatusOK, user)
 }
+
 
 func (uc *UserController) UpdateUser(c echo.Context) error {
     userID := c.Param("id")
