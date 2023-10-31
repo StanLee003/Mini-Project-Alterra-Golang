@@ -1,5 +1,4 @@
-# Use an official Golang runtime as a parent image
-FROM golang:1.16
+FROM golang:1.20-alpine
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -7,6 +6,9 @@ WORKDIR /app
 # Copy the Go source code and go.mod/go.sum files
 COPY go.mod .
 COPY go.sum .
+
+# Download Go module dependencies
+RUN go mod download
 
 # Copy the rest of your application code
 COPY . .
