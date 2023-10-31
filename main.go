@@ -26,9 +26,6 @@ func main() {
 
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
-	dbHost := os.Getenv("DB_HOST")
-	dbPort := os.Getenv("DB_PORT")
-	dbName := os.Getenv("DB_NAME")
 
 	dsn := fmt.Sprintf("%s:%s@tcp(172.17.0.3:3306)/bikrentgoapp?parseTime=true", dbUser, dbPassword)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
