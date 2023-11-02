@@ -1,0 +1,22 @@
+[0;1;32m●[0m docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+     Active: [0;1;32mactive (running)[0m since Wed 2023-11-01 01:32:51 CST; 2min 54s ago
+TriggeredBy: [0;1;32m●[0m docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 1183 (dockerd)
+      Tasks: 9
+     Memory: 106.2M
+        CPU: 749ms
+     CGroup: /system.slice/docker.service
+             └─1183 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+Nov 01 01:32:48 iZk1agw9dbjyr0ql5om4w2Z dockerd[1183]: time="2023-11-01T01:32:48.961984405+08:00" level=info msg="Starting up"
+Nov 01 01:32:48 iZk1agw9dbjyr0ql5om4w2Z dockerd[1183]: time="2023-11-01T01:32:48.967185185+08:00" level=info msg="detected 127.0.0.53 nameserver, assuming systemd-resolved, so using resolv.conf: /run/systemd/resolve/resolv.conf"
+Nov 01 01:32:49 iZk1agw9dbjyr0ql5om4w2Z dockerd[1183]: time="2023-11-01T01:32:49.388417999+08:00" level=info msg="[graphdriver] using prior storage driver: overlay2"
+Nov 01 01:32:49 iZk1agw9dbjyr0ql5om4w2Z dockerd[1183]: time="2023-11-01T01:32:49.583220667+08:00" level=info msg="Loading containers: start."
+Nov 01 01:32:50 iZk1agw9dbjyr0ql5om4w2Z dockerd[1183]: time="2023-11-01T01:32:50.921176976+08:00" level=info msg="Default bridge (docker0) is assigned with an IP address 172.17.0.0/16. Daemon option --bip can be used to set a preferred IP address"
+Nov 01 01:32:51 iZk1agw9dbjyr0ql5om4w2Z dockerd[1183]: time="2023-11-01T01:32:51.032651726+08:00" level=info msg="Loading containers: done."
+Nov 01 01:32:51 iZk1agw9dbjyr0ql5om4w2Z dockerd[1183]: time="2023-11-01T01:32:51.100452296+08:00" level=info msg="Docker daemon" commit="24.0.5-0ubuntu1~22.04.1" graphdriver=overlay2 version=24.0.5
+Nov 01 01:32:51 iZk1agw9dbjyr0ql5om4w2Z dockerd[1183]: time="2023-11-01T01:32:51.100807429+08:00" level=info msg="Daemon has completed initialization"
+Nov 01 01:32:51 iZk1agw9dbjyr0ql5om4w2Z systemd[1]: Started Docker Application Container Engine.
+Nov 01 01:32:51 iZk1agw9dbjyr0ql5om4w2Z dockerd[1183]: time="2023-11-01T01:32:51.248378361+08:00" level=info msg="API listen on /run/docker.sock"
