@@ -38,4 +38,6 @@ func SetupRoutes(e *echo.Echo, db *gorm.DB) {
     //rental
     e.GET("/rental/:id", rentalController.GetRental)
 	e.POST("/rentals", rentalController.CreateRental)
+
+    e.POST("/getbikefact",getbikefact)
 }

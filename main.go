@@ -27,7 +27,7 @@ func main() {
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
 
-	dsn := fmt.Sprintf("%s:%s@tcp(172.17.0.3:3306)/bikrentgoapp?parseTime=true", dbUser, dbPassword)
+	dsn := fmt.Sprintf("%s:%s@tcp(localhost:3306)/bikrentgoapp?parseTime=true", dbUser, dbPassword)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Failed to open a database connection: %v", err)
@@ -44,5 +44,5 @@ func main() {
     e.Use(middleware.Recover())
     e.Use(middleware.CORS())
 
-	e.Start(":8080")
+	e.Start(":80")
 }
