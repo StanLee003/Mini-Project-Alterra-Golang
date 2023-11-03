@@ -23,7 +23,7 @@ func NewUserDetailController(db *gorm.DB) *UserDetailController {
 func (udc *UserDetailController) CreateUserDetail(c echo.Context) error {
     userID := c.Param("id")
 
-    var user models.UserWithDetail
+    var user models.User
     if err := udc.DB.First(&user, userID).Error; err != nil {
         return c.JSON(http.StatusNotFound, map[string]string{"error": "User not found"})
     }
@@ -125,27 +125,18 @@ func (udc *UserDetailController) DeleteUserDetail(c echo.Context) error {
         return c.JSON(http.StatusNotFound, map[string]string{"error": "User not found"})
     }
 
-    // Find the user detail by user ID
     var userDetail models.UserDetail
     if err := udc.DB.Where("user_id = ?", user.ID).First(&userDetail).Error; err != nil {
         return c.JSON(http.StatusNotFound, map[string]string{"error": "UserDetail not found"})
     }
 
-    // Now, let's delete associated records, such as rentals, if necessary
-    if err := udc.DB.Where("user_id = ?", user.ID).Delete(&models.Rental{}).Error; err != nil {
-        log.Println("Error deleting associated rentals:", err)
-        return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to delete associated rentals"})
-    }
-
-    // Delete the user detail
     if err := udc.DB.Delete(&userDetail).Error; err != nil {
-        log.Println("Error deleting user detail:", err)
+        log.Println("Error:", err)
         return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to delete UserDetail"})
     }
 
     return c.JSON(http.StatusOK, map[string]string{"message": "UserDetail deleted successfully"})
 }
-
 
 func (udc *UserDetailController) GetUserDetailByID(c echo.Context) error {
     // Get the user ID from the URL parameter

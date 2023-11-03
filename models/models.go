@@ -10,6 +10,7 @@ type User struct {
     Password   string
     Role       int
     Rentals     []Rental
+    UserDetail  UserDetail
 }
 
 type UserWithDetail struct {
